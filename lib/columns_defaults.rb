@@ -1,3 +1,7 @@
+# Generates sass classes that can be used directly (e.g. column_1, prefix_4)
+#
+# todo parameterise? rake? generator for rails?
+#
 columns = 12
 
 (1..columns).each do |i|
@@ -14,5 +18,3 @@ puts ".omega"
 puts "  + omega"
 puts ".container_#{columns}"
 puts "  + column_container(#{columns})"
-
-  

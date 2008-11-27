@@ -1,5 +1,48 @@
+// Sample use
+// ==========
+
+/ / Default column container (default is 12 columns)
+/ .content
+/   + column_container
+/ 
+/ .details
+/   + column(8)
+/   
+/   .info
+/     + alpha_column(4)
+/   
+/   .advert
+/     + omega_column(4)
+/ 
+/ .notes
+/   + column(3)
+/   + column_prefix(1)
+/
+/
+/ <body>
+/   <div class="content">
+/     <div class="details">
+/       <div class="info">info</div>
+/       <div class="advert">advert</div>
+/       <p>foo far</p>
+/     </div>
+/     <div class="notes">
+/       notes
+/     </div>
+/   </div>
+/ </body>
+/
+/  +--------------------+----+-------+
+/  |  info   |  advert  |    | notes |
+/  +---------+----------+    |       |
+/  | foo far            |    |       |
+/  |                    |    |       |
+/  +--------------------+----+-------+
+/
+
+
 !column_margin ||= 10px
-!column_width  ||= 60
+!column_width  ||= 60px
 
 // Allows you to define grid styles for 'semantic' class styles, rather
 // than sprinking <div class="grid_x"> everywhere
@@ -43,29 +86,14 @@
 =omega
   :margin-right 0
   
+/ for columns _inside_ a column at the beginning of the row
 =alpha_column(!columns)
   + column(!columns)
   + alpha
-  
+
+/ for columns _inside_ a column at the end of the row
 =omega_column(!columns)
   + column(!columns)
   + omega
 
 
-// Samples
-
-.content
-  + column_container
-
-.details
-  + column(8)
-  
-  .info
-    + alpha_column(4)
-  
-  .advert
-    + omega_column(4)
-
-.notes
-  + column(3)
-  + column_prefix(1)

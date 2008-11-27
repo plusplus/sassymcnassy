@@ -1,0 +1,71 @@
+!column_margin ||= 10px
+!column_width  ||= 60
+
+// Allows you to define grid styles for 'semantic' class styles, rather
+// than sprinking <div class="grid_x"> everywhere
+//
+// .article
+//   + grid_8
+//
+// .sidebar
+//   + grid_12
+//
+// restrictions
+//    margins between columns = 2 * the gutter margin
+
+=column_width(!columns)
+  :width        = !columns * !column_width + !column_margin * 2 * (!columns - 1)
+
+=all_columns
+  :display        inline
+  :float          left
+  :margin-left  = !column_margin
+  :margin-right = !column_margin
+
+=column(!columns = 1)
+  +column_width(!columns)
+  +all_columns
+  
+=column_prefix(!columns)
+  :padding-left  = !columns * !column_width + !column_margin * 2
+  
+=column_suffix(!columns)
+  :padding-right = !columns * !column_width + !column_margin * 2
+
+=column_container(!columns = 12)
+  :margin-left    auto
+  :margin-right   auto
+  :width        = !column_margin * 2 + !column_width * !columns + (!column_margin * 2 * (!columns - 1))
+
+=alpha
+  :margin-left  0
+
+=omega
+  :margin-right 0
+  
+=alpha_column(!columns)
+  + column(!columns)
+  + alpha
+  
+=omega_column(!columns)
+  + column(!columns)
+  + omega
+
+
+// Samples
+
+.content
+  + column_container
+
+.details
+  + column(8)
+  
+  .info
+    + alpha_column(4)
+  
+  .advert
+    + omega_column(4)
+
+.notes
+  + column(3)
+  + column_prefix(1)
